@@ -13,7 +13,9 @@ import {
   Input,
   Button,
   Heading,
+  Spacer,
 } from '@chakra-ui/react';
+import Header from '../components/Header';
 
 export default function userLogin() {
     const [email, setEmail] = useState("");
@@ -87,7 +89,7 @@ export default function userLogin() {
         //testのURLにとぶ
         dispatch({ type: "setData", payload: Token });
         dispatch({ type: "setName", payload: Token });
-        router.push(`/userPage`);
+        router.push(`/loginchecker`);
   
       } 
       catch (error) {
@@ -105,61 +107,39 @@ export default function userLogin() {
 
   return (
     <ChakraProvider>
-      
-      <Box
-        mt={8}
-        p={8}
-        borderWidth={1}
-        borderRadius={8}
-        boxShadow="lg"
-      >
-        <center>
-        <Heading as="h1" size="xl">
-          UMAI Login画面
-        </Heading>
-      </center>
+      <Header/>
+      <Spacer bg='#f4f3f2' h='100'/>
+      <Box pt='30' bg='#f4f3f2' h='700' w='full'>
+        <Box  bg='white' maxW="md" mx="auto" mt={8} p={8}  boxShadow="lg">
+          <FormControl>
+            <FormLabel>Username</FormLabel>
+            <Input
+              type="text"
+              name="email"
+              placeholder="Enter your Email"
+              onChange={handleEmailChange}
+            />
+          </FormControl>
 
-      </Box>
-
-
-      <Box
-        maxW="md"
-        mx="auto"
-        mt={8}
-        p={8}
-        borderWidth={1}
-        borderRadius={8}
-        boxShadow="lg"
-      >
-  
-        
-        
-        <FormControl>
-          <FormLabel>Username</FormLabel>
-          <Input
-            type="text"
-            name="email"
-            placeholder="Enter your Email"
-            onChange={handleEmailChange}
-          />
-        </FormControl>
-
-        <FormControl mt={4}>
-          <FormLabel>Password</FormLabel>
-          <Input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            onChange={handlePasswordChange}
-            value={String(password)}
+          <FormControl mt={4}>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              onChange={handlePasswordChange}
+              value={String(password)}
             
-          />
-        </FormControl>
+            />
+          </FormControl>
 
-        <Button colorScheme="teal" mt={4} onClick={handleSubmit} >
-          Login
-        </Button>
+          <Button colorScheme="teal" mt={4} onClick={handleSubmit} >
+            Login
+          </Button>
+        </Box>
       </Box>
+
+      
     </ChakraProvider>
   );
 };
